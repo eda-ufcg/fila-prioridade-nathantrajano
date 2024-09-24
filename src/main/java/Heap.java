@@ -2,15 +2,15 @@ import java.util.Arrays;
 
 public class Heap {
     
-    private int[] heap;
+    private Pair[] heap;
     private int tail;
     
     public Heap(int capacidade) {
-        this.heap = new int[capacidade];
+        this.heap = new Pair[capacidade];
         this.tail = -1;
     }
     
-    public Heap(int[] heap) {
+    public Heap(Pair[] heap) {
         this.heap = heap;
         this.tail = this.heap.length - 1;
         this.buildHeap();
@@ -37,7 +37,7 @@ public class Heap {
         return (i-1)/2;
     }
 
-    public void add(int n) {
+    public void add(Pair n) {
         if (tail >= (heap.length - 1))
             resize();
     
@@ -45,8 +45,8 @@ public class Heap {
         this.heap[tail] = n;
         
         int i = tail;
-        while (i > 0 && this.heap[parent(i)] < this.heap[i]) {
-            int aux = this.heap[i];
+        while (i > 0 && this.heap[parent(i)] < this.heap[i].getPrioridade()) {
+            Pair aux = this.heap[i];
             this.heap[i] = this.heap[parent(i)];
             this.heap[parent(i)] = aux;
             i = parent(i);
